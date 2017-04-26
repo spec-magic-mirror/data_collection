@@ -3,6 +3,7 @@ import cv2
 import os, sys, shutil
 import curses
 import tty, termios
+import time
 
 # From https://gist.github.com/jasonrdsouza/1901709
 def getchar():
@@ -25,12 +26,11 @@ def testMoles(trial_num):
         path = trial_num + "/" + filename
         print path
         test_im = cv2.imread(path)
-        cv2.imshow("Test Image", test_im)
-        cv2.waitKey(1)
-
-        c = ""
-        while c not in ["x","n","y"]:
-            c = getchar()
+	
+	c = ''
+	while c not in ["x","n","y"]:
+	    cv2.imshow("Test Image", test_im)
+            c = chr(cv2.waitKey())
 
         if c == "x":
             print "Exiting early - Results not saved!!!"
