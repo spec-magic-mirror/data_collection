@@ -1,0 +1,21 @@
+For "mole_labeler.py":
+
+This has the following capabilities:
+* User can click any number of moles on each image to store each as a separate mole
+* Stores results in a .csv file
+* Progress can be resumed if the user quits early so labeling can be done in multiple sittings
+
+The input to the script is a results csv filename (with the .csv). The format of this file is a list of [imagename, x, y] that is updated at the end of each labeling session.
+
+NOTE: End your session as specified below (not using Ctrl+Z) to make sure the data is recorded!
+
+When you want to start or continue a labeling session:
+1. Run as "python mole_labeler.py <results_filename>"
+2. Click into the window once to bring it into "focus" (otherwise the first click isn't recorded)
+3. Click each mole in the image
+4. Type "n" to go to the next image
+
+When you want to end the current labeling session:
+1. Type "q" to quit
+2. The data will then be recorded to the filename you specified and the script will end
+3. To continue your session, follow the above instructions and be sure to use the same filename. This will automatically resume from the first unseen image.
