@@ -1,5 +1,7 @@
 For "mole_labeler.py":
 
+Make sure all images are in a directory called "images" (images not included in this repo)
+
 This has the following capabilities:
 * User can click any number of moles on each image to store each as a separate mole
 * Stores results in a .csv file
