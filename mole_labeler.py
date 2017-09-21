@@ -25,7 +25,7 @@ def labelMoles(results_fname):
     # Make a list of unique image names already processed so we don't repeat
     if os.path.exists(results_fname):
         with open(results_fname, 'r') as results_f:
-            reader = csv.reader(results_fname)
+            reader = csv.reader(results_f)
             for r in reader:
                 processed_files.append(r[0])
         processed_files = set(processed_files)
