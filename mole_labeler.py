@@ -59,9 +59,9 @@ def labelMoles(results_fname):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Correct usage: python mole_labeler.py <images directory> <results_filename>")
+        print("Correct usage: python mole_labeler.py <results_filename>")
         exit(0)
-    elif not sys.argv[2].endswith('.csv'):
+    elif not sys.argv[1].endswith('.csv'):
         print("Error: The results_filename should be a .csv file")
         exit(0)
 
