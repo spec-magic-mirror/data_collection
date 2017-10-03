@@ -29,7 +29,6 @@ class MoleCropper:
             x = int(float(mole[self.x_idx]))
             y = int(float(mole[self.y_idx]))
             img_path = self.original_dir + "/" + img_fname
-            print img_path
             if os.path.exists(img_path):
                 img = cv2.imread(img_path)
                 crops = self.getMoleCrop(img, x, y)
