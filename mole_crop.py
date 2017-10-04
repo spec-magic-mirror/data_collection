@@ -9,7 +9,7 @@ class MoleCropper:
     def __init__(self, dir, fname):
         self.mole_list = []
         self.cropped_dir = dir + "/cropped"
-        self.original_dir = dir + "/images"
+        self.original_dir = "images"
         self.size = 75
         self.img_idx = 0
         self.x_idx = 1
