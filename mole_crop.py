@@ -10,7 +10,7 @@ class MoleCropper:
         self.mole_list = []
         self.cropped_dir = dir + "/cropped"
         self.original_dir = "images"
-        self.size = 75
+        self.size = 64
         self.img_idx = 0
         self.x_idx = 1
         self.y_idx = 2
