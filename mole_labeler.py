@@ -5,8 +5,6 @@ import curses
 import tty, termios
 import time
 
-PICS_DIR = 'images'
-WINDOW_NAME = 'Test Image'
 results = []
 current_fname = ""
 
@@ -17,7 +15,7 @@ def click_mole(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         results.append([current_fname, x, y])
 
-def labelMoles(results_fname):
+def labelMoles(images_dir, results_fname):
     global results
     global current_fname
 
@@ -32,17 +30,20 @@ def labelMoles(results_fname):
     else:
         # If this is the first run, create the file
         open(results_fname, 'w').close()
-
-    cv2.namedWindow(WINDOW_NAME)
-    cv2.setMouseCallback(WINDOW_NAME, click_mole)
-
-    for filename in os.listdir(PICS_DIR):
-        if not filename.endswith(".png") or filename in processed_files:
+    window_name = ''
+    
+    for filename in os.listdir(images_dir):
+        if (not filename.endswith(".png") and not filename.endswith(".jpg")) \
+            or filename in processed_files:
             continue
         current_fname = filename
-        test_im = cv2.imread(PICS_DIR + "/" + filename)
-        cv2.imshow(WINDOW_NAME, test_im)
+        cv2.namedWindow(current_fname)
+        cv2.setMouseCallback(current_fname, click_mole)
+
+        test_im = cv2.imread(images_dir + "/" + filename)
+        cv2.imshow(current_fname, test_im)
         key = cv2.waitKey(0) & 0xFF
+        cv2.destroyWindow(current_fname)
 
         if key == ord('n'):
             continue
@@ -58,13 +59,14 @@ def labelMoles(results_fname):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Correct usage: python mole_labeler.py <results_filename>")
+    if len(sys.argv) < 3:
+        print("Correct usage: python mole_labeler.py <images_directory> <results_filename>")
         exit(0)
-    elif not sys.argv[1].endswith('.csv'):
+    elif not sys.argv[2].endswith('.csv'):
         print("Error: The results_filename should be a .csv file")
         exit(0)
 
-    results_fname = sys.argv[1]
-    labelMoles(results_fname)
+    images_dir = sys.argv[1]
+    results_fname = sys.argv[2]
+    labelMoles(images_dir, results_fname)
     exit(0)

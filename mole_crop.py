@@ -6,10 +6,10 @@ from shutil import copyfile
 class MoleCropper:
     version = "0.0.1"
 
-    def __init__(self, dir, fname):
+    def __init__(self, images_dir, dir, fname):
         self.mole_list = []
         self.cropped_dir = dir + "/cropped"
-        self.original_dir = "images"
+        self.original_dir = images_dir
         self.size = 64
         self.img_idx = 0
         self.x_idx = 1
@@ -60,14 +60,14 @@ class MoleCropper:
         return mole_img
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
+    if len(sys.argv) != 4:
         print "Error: Incorrect Usage"
-        print "Correct Usage: mole_crop.py <session folder> <coords_csv>"
+        print "Correct Usage: mole_crop.py <images_dir> <session folder> <coords_csv>"
         print "The .csv file should have rows as <img_filename, x, y>"
-        print "e.g. \"python mole_crop.py test test/mole_list.csv\""
+        print "e.g. \"python mole_crop.py images test test/mole_list.csv\""
         exit(-1)
 
-    mc = MoleCropper(sys.argv[1], sys.argv[2])
+    mc = MoleCropper(sys.argv[1], sys.argv[2], sys.argv[3])
     mc.cropMoles()
 
     exit(0)
